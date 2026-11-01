@@ -138,7 +138,11 @@ DropdownButton<String>(
     }
   },
 ),
-            const Text('You have pushed the button this many times:'),
+            const Text(  selectedLanguage == 'English'
+      ? 'Welcome to Swasthya'
+      : selectedLanguage == 'Malayalam'
+          ? 'സ്വസ്ഥ്യയിലേക്ക് സ്വാഗതം'
+          : 'स्वास्थ्य में आपका स्वागत है', ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
