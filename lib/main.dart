@@ -144,8 +144,12 @@ DropdownButton<String>(
           ? 'സ്വസ്ഥ്യയിലേക്ക് സ്വാഗതം'
           : 'स्वास्थ्य में आपका स्वागत है', ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+               selectedLanguage == 'English'
+      ? 'Your health, our priority'
+      : selectedLanguage == 'Malayalam'
+          ? 'നിങ്ങളുടെ ആരോഗ്യം ഞങ്ങളുടെ മുൻഗണന'
+          : 'आपका स्वास्थ्य हमारी प्राथमिकता',
+  textAlign: TextAlign.center,
             ),
           ],
         ),
