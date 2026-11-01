@@ -55,7 +55,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
+String selectedLanguage = 'English';
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -104,6 +104,31 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: .center,
           children: [
+            // 
+DropdownButton<String>(
+  value: selectedLanguage,
+  items: const [
+    DropdownMenuItem(
+      value: 'English',
+      child: Text('English'),
+    ),
+    DropdownMenuItem(
+      value: 'Malayalam',
+      child: Text('മലയാളം'),
+    ),
+    DropdownMenuItem(
+      value: 'Hindi',
+      child: Text('हिन्दी'),
+    ),
+  ],
+  onChanged: (String? language) {
+    if (language != null) {
+      setState(() {
+        selectedLanguage = language;
+      });
+    }
+  },
+),
             const Text('You have pushed the button this many times:'),
             Text(
               '$_counter',
