@@ -69,6 +69,7 @@ String selectedLanguage = 'English';
 
   @override
   Widget build(BuildContext context) {
+    String selectedLanguage = 'English';
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
