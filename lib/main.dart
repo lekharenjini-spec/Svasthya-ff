@@ -1,51 +1,11 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 
 void main() {
   runApp(const SwasthyaApp());
 }
 
-class SwasthyaApp extends StatefulWidget {
+class SwasthyaApp extends StatelessWidget {
   const SwasthyaApp({super.key});
-
-  @override
-  State<SwasthyaApp> createState() => _SwasthyaAppState();
-}
-
-class _SwasthyaAppState extends State<SwasthyaApp> {
-  String selectedLanguage = 'English';
-
-  final Map<String, Map<String, String>> translations = {
-    'English': {
-      'tagline': 'Your health, our priority',
-      'title': 'Welcome to Swasthya',
-      'find': 'Find an Ambulance',
-      'emergency': 'Emergency Assistance',
-      'contact': 'Find ambulance contact numbers',
-      'location': 'Your location',
-      'search': 'Search',
-    },
-    'Malayalam': {
-      'tagline': 'നിങ്ങളുടെ ആരോഗ്യം ഞങ്ങളുടെ മുൻഗണന',
-      'title': 'സ്വാസ്ഥ്യത്തിലേക്ക് സ്വാഗതം',
-      'find': 'ആംബുലൻസ് കണ്ടെത്തുക',
-      'emergency': 'അടിയന്തര സഹായം',
-      'contact': 'ആംബുലൻസ് നമ്പറുകൾ കണ്ടെത്തുക',
-      'location': 'നിങ്ങളുടെ സ്ഥലം',
-      'search': 'തിരയുക',
-    },
-    'Hindi': {
-      'tagline': 'आपका स्वास्थ्य हमारी प्राथमिकता',
-      'title': 'स्वास्थ्य में आपका स्वागत है',
-      'find': 'एम्बुलेंस खोजें',
-      'emergency': 'आपातकालीन सहायता',
-      'contact': 'एम्बुलेंस संपर्क नंबर खोजें',
-      'location': 'आपका स्थान',
-      'search': 'खोजें',
-    },
-  };
-
-  String t(String key) =>
-      translations[selectedLanguage]![key]!;
 
   @override
   Widget build(BuildContext context) {
@@ -54,124 +14,90 @@ class _SwasthyaAppState extends State<SwasthyaApp> {
       title: 'Swasthya',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.teal,
+          seedColor: const Color(0xFF13866D),
         ),
         useMaterial3: true,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'SWASTHYA',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
-            ),
-          ),
-          backgroundColor: Colors.teal,
-          foregroundColor: Colors.white,
-          actions: [
-            DropdownButton<String>(
-              value: selectedLanguage,
-              dropdownColor: Colors.white,
-              underline: const SizedBox(),
-              items: ['English', 'Malayalam', 'Hindi']
-                  .map((language) => DropdownMenuItem(
-                        value: language,
-                        child: Text(language),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                if (value != null) {
-                  setState(() {
-                    selectedLanguage = value;
-                  });
-                }
-              },
-            ),
-          ],
-        ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
+      home: const WelcomeScreen(),
+    );
+  }
+}
+
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF3FAF7),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(26),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(
                 Icons.local_hospital,
-                color: Colors.teal,
-                size: 85,
-              ),
-              const SizedBox(height: 15),
-              Text(
-                t('title'),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                t('tagline'),
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 35),
-              Card(
-                color: Colors.teal.shade50,
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      const Icon(
-                        Icons.emergency,
-                        size: 45,
-                        color: Colors.red,
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        t('emergency'),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(t('contact')),
-                    ],
-                  ),
-                ),
+                size: 100,
+                color: Color(0xFF13866D),
               ),
               const SizedBox(height: 20),
-              ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.local_shipping),
-                label: Text(t('find')),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.all(18),
-                ),
-              ),
-              const SizedBox(height: 25),
-              Text(
-                t('location'),
-                style: const TextStyle(
-                  fontSize: 18,
+              const Text(
+                'Welcome to Swasthya',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 29,
                   fontWeight: FontWeight.bold,
+                  color: Color(0xFF126B58),
                 ),
               ),
-              const SizedBox(height: 10),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: t('location'),
-                  prefixIcon: const Icon(Icons.location_on),
-                  border: const OutlineInputBorder(),
+              const SizedBox(height: 12),
+              const Text(
+                'Your emergency, our priority.',
+                style: TextStyle(fontSize: 17),
+              ),
+              const SizedBox(height: 45),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const LoginScreen(),
+                      ),
+                    );
+                  },
+                  child: const Text('Login'),
                 ),
               ),
-              const SizedBox(height: 15),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text(t('search')),
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const SignupScreen(),
+                      ),
+                    );
+                  },
+                  child: const Text('Create an account'),
+                ),
+              ),
+              const SizedBox(height: 22),
+              TextButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const AmbulanceScreen(),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.local_taxi),
+                label: const Text('Find an ambulance without login'),
               ),
             ],
           ),
@@ -181,4 +107,121 @@ class _SwasthyaAppState extends State<SwasthyaApp> {
   }
 }
 
-// 
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Login')),
+      body: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Email or phone number',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 18),
+            const TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Login'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const SignupScreen(),
+                  ),
+                );
+              },
+              child: const Text("Don't have an account? Sign up"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Create Account')),
+      body: ListView(
+        padding: const EdgeInsets.all(24),
+        children: [
+          const TextField(
+            decoration: InputDecoration(
+              labelText: 'Full name',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          const SizedBox(height: 16),
+          const TextField(
+            keyboardType: TextInputType.phone,
+            decoration: InputDecoration(
+              labelText: 'Phone number',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          const SizedBox(height: 16),
+          const TextField(
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              labelText: 'Email address',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          const SizedBox(height: 16),
+          const TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: 'Password',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          const SizedBox(height: 24),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Sign Up'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AmbulanceScreen extends StatelessWidget {
+  const AmbulanceScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Find an Ambulance')),
+      body: const Center(
+        child: Text(
+          'Ambulance search will be added here.',
+          style: TextStyle(fontSize: 18),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
+}
+
