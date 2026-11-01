@@ -1,0 +1,12 @@
+{
+  "appName": "Svasthya",
+  "welcome": "Welcome to Svasthya",
+  "home": "Home",
+  "ambulance": "Find Ambulance",
+  "hospital": "Find Hospital",
+  "emergency":"Emergency",
+  "settings": "Settings",
+  "language": "Select Language",
+  "english": "English",
+  "malayalam": "Malayalam"
+  } 
