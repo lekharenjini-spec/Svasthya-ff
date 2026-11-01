@@ -108,6 +108,14 @@ String selectedLanguage = 'English';
             // 
 DropdownButton<String>(
   value: selectedLanguage,
+  onChanged: (String? newValue) {
+  if (newValue != null) {
+    setState(() {
+      selectedLanguage = newValue;
+    });
+  }
+},
+  
   items: const [
     DropdownMenuItem(
       value: 'English',
